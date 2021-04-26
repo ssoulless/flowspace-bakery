@@ -30,7 +30,6 @@ feature 'Cooking cookies' do
 
   scenario 'Trying to bake a cookie while oven is full' do
     user = create_and_signin
-    oven = user.ovens.first
 
     oven = FactoryGirl.create(:oven, user: user)
     visit oven_path(oven)
@@ -47,7 +46,6 @@ feature 'Cooking cookies' do
 
   scenario 'Baking multiple cookies' do
     user = create_and_signin
-    oven = user.ovens.first
 
     oven = FactoryGirl.create(:oven, user: user)
     visit oven_path(oven)
@@ -63,6 +61,27 @@ feature 'Cooking cookies' do
     visit root_path
     within '.store-inventory' do
       expect(page).to have_content '3 Cookies'
+    end
+  end
+
+  scenario 'Cooking with no filling shows no filling text' do
+    user = create_and_signin
+
+    oven = FactoryGirl.create(:oven, user: user)
+    visit oven_path(oven)
+    click_link_or_button 'Prepare Cookie'
+    fill_in 'Fillings', with: ''
+    click_button 'Mix and bake'
+
+    within('.cookie-info') do
+      expect(page).to have_content 'no fillings'
+    end
+
+    click_button 'Retrieve Cookie'
+
+    visit root_path
+    within '.store-inventory' do
+      expect(page).to have_content 'no fillings'
     end
   end
 end
