@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OvensController < ApplicationController
   before_action :authenticate_user!
 
@@ -11,9 +13,7 @@ class OvensController < ApplicationController
 
   def empty
     @oven = current_user.ovens.find_by!(id: params[:id])
-    if @oven.cookie
-      @oven.cookie.update_attributes!(storage: current_user)
-    end
+    @oven.cookie&.update_attributes!(storage: current_user)
     redirect_to @oven, alert: 'Oven emptied!'
   end
 end

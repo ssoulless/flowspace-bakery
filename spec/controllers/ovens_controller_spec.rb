@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe OvensController do
@@ -6,19 +8,19 @@ describe OvensController do
   describe 'GET index' do
     let(:the_request) { get :index }
 
-    context "when not authenticated" do
+    context 'when not authenticated' do
       before { sign_in nil }
 
-      it "blocks access" do
+      it 'blocks access' do
         the_request
         expect(response).to redirect_to new_user_session_path
       end
     end
 
-    context "when authenticated" do
+    context 'when authenticated' do
       before { sign_in user }
 
-      it "allows access" do
+      it 'allows access' do
         the_request
         expect(response).to_not be_a_redirect
       end
@@ -35,24 +37,24 @@ describe OvensController do
     let(:oven) { FactoryGirl.create(:oven, user: user) }
     let(:the_request) { get :show, params: { id: oven.id } }
 
-    context "when not authenticated" do
+    context 'when not authenticated' do
       before { sign_in nil }
 
-      it "blocks access" do
+      it 'blocks access' do
         the_request
         expect(response).to redirect_to new_user_session_path
       end
     end
 
-    context "when authenticated" do
+    context 'when authenticated' do
       before { sign_in user }
 
-      it "allows access" do
+      it 'allows access' do
         the_request
         expect(response).to_not be_a_redirect
       end
 
-      it "assigns the @oven" do
+      it 'assigns the @oven' do
         the_request
         expect(assigns(:oven)).to eq(oven)
       end
@@ -60,10 +62,10 @@ describe OvensController do
       context "when requesting someone else's oven" do
         let(:oven) { FactoryGirl.create(:oven) }
 
-        it "blocks access" do
-          expect {
+        it 'blocks access' do
+          expect do
             the_request
-          }.to raise_error(ActiveRecord::RecordNotFound)
+          end.to raise_error(ActiveRecord::RecordNotFound)
         end
       end
     end
@@ -73,25 +75,25 @@ describe OvensController do
     let(:oven) { FactoryGirl.create(:oven, user: user) }
     let(:the_request) { post :empty, params: { id: oven.id } }
 
-    context "when not authenticated" do
+    context 'when not authenticated' do
       before { sign_in nil }
 
-      it "blocks access" do
+      it 'blocks access' do
         the_request
         expect(response).to redirect_to new_user_session_path
       end
     end
 
-    context "when authenticated" do
+    context 'when authenticated' do
       before { sign_in user }
 
-      it "allows access" do
-        expect {
+      it 'allows access' do
+        expect do
           the_request
-        }.to_not raise_error
+        end.to_not raise_error
       end
 
-      it "assigns the @oven" do
+      it 'assigns the @oven' do
         the_request
         expect(assigns(:oven)).to eq(oven)
       end
@@ -108,13 +110,12 @@ describe OvensController do
       context "when requesting someone else's oven" do
         let(:oven) { FactoryGirl.create(:oven) }
 
-        it "blocks access" do
-          expect {
+        it 'blocks access' do
+          expect do
             the_request
-          }.to raise_error(ActiveRecord::RecordNotFound)
+          end.to raise_error(ActiveRecord::RecordNotFound)
         end
       end
     end
-
   end
 end

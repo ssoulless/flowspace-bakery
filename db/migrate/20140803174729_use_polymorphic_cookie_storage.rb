@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsePolymorphicCookieStorage < ActiveRecord::Migration[5.1]
   def up
     add_column :cookies, :storage_id, :integer
