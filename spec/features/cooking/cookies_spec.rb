@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 feature 'Cooking cookies' do
   scenario 'Cooking a single cookie' do
     user = create_and_signin

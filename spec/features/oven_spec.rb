@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 feature 'Oven' do
   scenario 'Creating an account' do
     sign_up_with('myemail@test.com', 'abcdefgh', 'abcdefgh')
@@ -12,7 +14,7 @@ feature 'Oven' do
     oven = user.ovens.first
 
     visit root_path
-    click_link "View your ovens"
+    click_link 'View your ovens'
     click_link oven.name
 
     expect(current_path).to eq(oven_path(oven))

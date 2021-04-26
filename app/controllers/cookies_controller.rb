@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CookiesController < ApplicationController
   before_action :authenticate_user!
 

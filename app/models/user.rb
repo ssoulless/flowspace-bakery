@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -14,5 +16,4 @@ class User < ActiveRecord::Base
   def setup_first_oven
     ovens.new(name: 'My First Oven')
   end
-
 end

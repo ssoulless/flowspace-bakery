@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 ruby '2.6.2'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
 
@@ -49,18 +51,18 @@ gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
 
 group :development do
-  gem 'selenium-webdriver'
-  gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'guard-bundler'
   gem 'guard-rails'
   gem 'guard-rspec'
   gem 'html2haml'
-  gem 'spring-commands-rspec'
+  gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rubocop', '~> 1.13'
+  gem 'selenium-webdriver'
+  gem 'spring'
+  gem 'spring-commands-rspec'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :development, :test do
@@ -73,8 +75,8 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'faker'
-  gem 'shoulda-matchers', require: false
+  gem 'rails-controller-testing'
   gem 'rspec-collection_matchers'
   gem 'rspec_junit_formatter'
-  gem 'rails-controller-testing'
+  gem 'shoulda-matchers', require: false
 end
