@@ -84,4 +84,23 @@ feature 'Cooking cookies' do
       expect(page).to have_content 'no fillings'
     end
   end
+
+  scenario 'it allows prepare cookies in batches' do
+    user = create_and_signin
+    oven = user.ovens.first
+
+    visit oven_path(oven)
+
+    click_link_or_button 'Prepare Cookie'
+    fill_in 'Fillings', with: 'Chocolate Chip'
+    fill_in 'Batch quantity', with: '10'
+    click_button 'Mix and bake'
+
+    click_button 'Retrieve Cookie'
+
+    visit root_path
+    within '.store-inventory' do
+      expect(page).to have_content '10 Cookies'
+    end
+  end
 end
