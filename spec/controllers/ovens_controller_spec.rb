@@ -103,7 +103,7 @@ describe OvensController do
 
         the_request
 
-        expect(oven.cookie).to be_nil
+        expect(oven.cookies).to match_array([])
         expect(user.stored_cookies.to_a).to match_array([cookie])
       end
 
