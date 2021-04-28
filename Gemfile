@@ -31,7 +31,7 @@ gem 'turbolinks'
 gem 'jbuilder'
 
 # Use Redis adapter to run Action Cable in production
-gem 'redis', '~> 3.0'
+gem 'redis', '~> 4.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -49,6 +49,8 @@ gem 'pg', '~> 0.18'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
+
+gem 'sidekiq', '~> 6.2', '>= 6.2.1'
 
 group :development do
   gem 'better_errors'
@@ -78,5 +80,6 @@ group :test do
   gem 'rails-controller-testing'
   gem 'rspec-collection_matchers'
   gem 'rspec_junit_formatter'
+  gem 'rspec-sidekiq'
   gem 'shoulda-matchers', require: false
 end

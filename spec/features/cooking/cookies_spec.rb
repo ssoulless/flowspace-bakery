@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 feature 'Cooking cookies' do
+  before do
+    # Background jobs testing setup
+    Sidekiq::Testing.inline!
+  end
+
   scenario 'Cooking a single cookie' do
     user = create_and_signin
     oven = user.ovens.first
