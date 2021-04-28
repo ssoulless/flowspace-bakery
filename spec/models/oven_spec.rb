@@ -7,7 +7,7 @@ describe Oven do
 
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
-    it { is_expected.to have_one(:cookie) }
+    it { is_expected.to have_many(:cookies) }
   end
 
   describe 'validations' do
