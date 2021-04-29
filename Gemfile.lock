@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    action-cable-testing (0.6.1)
+      actioncable (>= 5.0)
     actioncable (5.1.7)
       actionpack (= 5.1.7)
       nio4r (~> 2.0)
@@ -321,6 +323,7 @@ PLATFORMS
   x86_64-darwin-18
 
 DEPENDENCIES
+  action-cable-testing
   better_errors
   binding_of_caller
   capybara

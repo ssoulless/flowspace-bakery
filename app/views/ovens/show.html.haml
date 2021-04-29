@@ -8,7 +8,8 @@
       (Your Cookie is Ready)
       = button_to "Retrieve Cookie", empty_oven_path, class: 'button tiny'
     - else
-      (Cooking)
+      .oven_status{ :id => "oven_status_#{@oven.id}" }
+        (Cooking)
   - else
     None
   - if @oven.status == 'ready' or @oven.status == 'empty'
