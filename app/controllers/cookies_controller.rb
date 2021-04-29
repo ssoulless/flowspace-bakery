@@ -14,13 +14,13 @@ class CookiesController < ApplicationController
   end
 
   def create
+    quantity = params[:quantity].to_i
     @oven = current_user.ovens.find_by!(id: params[:oven_id])
+    TurnOnOvenService.call(@oven, quantity)
 
-    params[:quantity].to_i.times do
+    quantity.times do
       @oven.cookies.create!(cookie_params)
     end
-
-    @oven.update_column(:status, 'cooking')
 
     redirect_to oven_path(@oven)
   end
