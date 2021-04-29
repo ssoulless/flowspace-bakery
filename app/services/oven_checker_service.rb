@@ -11,5 +11,8 @@ class OvenCheckerService
     return unless oven.cookies_quantity == oven.cookies.count
 
     oven.update_column(:status, 'ready')
+    puts '------ ActionCable -----'
+    ActionCable.server.broadcast 'ovenstatus_channel', status: '(Your Cookie is Ready)',
+                                                       id: oven.id
   end
 end
