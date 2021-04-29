@@ -4,10 +4,13 @@
   Cookie(s) in oven:
   - if @oven.cookies.present?
     #{@oven.cookies.count} cookie(s) with #{get_filling_message(@cookie)}
-    - if @cookie.ready?
+    - if @oven.status == 'ready'
       (Your Cookie is Ready)
-    = button_to "Retrieve Cookie", empty_oven_path, class: 'button tiny'
+      = button_to "Retrieve Cookie", empty_oven_path, class: 'button tiny'
+    - else
+      (Cooking)
   - else
     None
-  = link_to "Prepare Cookie", new_oven_cookies_path(@oven), class: 'button prepare-cookie'
+  - if @oven.status == 'ready' or @oven.status == 'empty'
+    = link_to "Prepare Cookie", new_oven_cookies_path(@oven), class: 'button prepare-cookie'
 %br

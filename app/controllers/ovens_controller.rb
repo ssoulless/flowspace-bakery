@@ -19,6 +19,7 @@ class OvensController < ApplicationController
         cookie.update_attributes!(storage: current_user)
       end
     end
+    @oven.update_column(:status, 'empty')
     redirect_to @oven, alert: 'Oven emptied!'
   end
 end
