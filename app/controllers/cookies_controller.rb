@@ -20,6 +20,8 @@ class CookiesController < ApplicationController
       @oven.cookies.create!(cookie_params)
     end
 
+    @oven.update_column(:status, 'cooking')
+
     redirect_to oven_path(@oven)
   end
 
